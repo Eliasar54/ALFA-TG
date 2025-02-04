@@ -108,7 +108,7 @@ let tempFilePath;
 
 try {
 const fileData = await conn.telegram.getFile(fileId);
-const fileUrl = `https://api.telegram.org/file/bot7718972219:AAEyiYhvah7Hqwt43VuGFOSwV1Ppubvbb5k/${fileData.file_path}`;
+const fileUrl = `https://api.telegram.org/file/bot7507120891:AAERXUfv1dOaZvBZdHrt6LJ4PyluoA5COLc/${fileData.file_path}`;
 const fileResponse = await axios.get(fileUrl, { responseType: 'arraybuffer' });
 
 const ext = path.extname(fileData.file_path).slice(1);
