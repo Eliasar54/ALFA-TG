@@ -111,7 +111,6 @@ let menuContent = `
 ┃ ➤ /menu2 (menu grupos)
 ┃ ➤ /menu3 (menu Dl)
 ┃ ➤ /menu18 (menu para adultos)
-┃ ➤ /menu4 (menu de buscadores)
 ┃ ➤ /menu8 (cómando avansados ptrodactyl panel)
 ┃ ➤ /menu11 (menu del owener)
 ╰━━━━━━━━━━━⊱`;
@@ -128,6 +127,7 @@ let menuContent = `
 ┃ ➤ /xnxxdl
 ┃ ➤ /pinterest
 ┃ ➤ /playaudio
+┃ ➤ /quemusica
 ╰━━━━━━━━━━━⊱`;
 await sendMenu(conn, menuContent);
 });
