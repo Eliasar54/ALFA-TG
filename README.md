@@ -2,3 +2,6 @@
 
 
 ## ALFA TG
+
+
+> esta es una versión mejor de ALFA TG plugins
