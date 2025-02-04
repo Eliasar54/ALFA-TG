@@ -1,1 +1,1 @@
-<img src="https://cdn.ryzendesu.vip/file/yBqk9QTPYK.jpg" alt="Miniatura" width="1280" height="720">
+<img src="https://i.ibb.co/MkwLq7F6/8cf08f999b0b.jpg" alt="ALFA-TG" width="1280" height="720">
