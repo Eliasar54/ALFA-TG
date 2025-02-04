@@ -1,3 +1,3 @@
-<img src="https://cdn.ryzendesu.vip/file/0ByU2ow0RL.jpg" 
-     alt="ALFA-TG" 
-     style="width: 100vw; height: auto; display: block;">
+# Miniatura de YouTube
+
+<img src="https://cdn.ryzendesu.vip/file/yBqk9QTPYK.jpg" alt="Miniatura" width="1280" height="720">
