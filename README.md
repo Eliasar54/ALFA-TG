@@ -9,7 +9,7 @@
 ### 🌟 (OPCIÓN 1) INSTALACIÓN AUTOMÁTICA 🫰
 
 ```bash
-a
+bash <(curl -sL https://raw.githubusercontent.com/Eliasar54/ALFA-TG/refs/heads/main/install.sh)
 ```
 
 ### ☁️ SKY ULTRA PLUS 
