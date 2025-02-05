@@ -86,28 +86,6 @@ fi
 
 mkdir -p logs
 
-echo -e "${BLUE}⚙️ ¿Quieres añadirte como owner del bot? (s/n)${RESET}"
-read -p "👉 Elige: " add_owner
-
-if [[ "$add_owner" == "s" ]]; then
-    read -p "🆔 Ingresa tu ID de Telegram (https://t.me/userinfobot para obtener tu ID): " user_id
-    read -p "👤 Ingresa tu nombre: " user_name
-
-    owners_file="./config/owners.json"
-
-    mkdir -p "./config"
-
-    if [[ -f "$owners_file" ]]; then
-        temp_file=$(mktemp)
-        jq --arg id "$user_id" --arg name "$user_name" '.owners += [{"id": $id, "name": $name}]' "$owners_file" > "$temp_file" && mv "$temp_file" "$owners_file"
-        echo -e "${CYAN}✅ Se ha añadido a $user_name (ID: $user_id) como owner.${RESET}"
-    else
-        echo -e "${CYAN}⚠️ No se encontró el archivo de owners. Creando uno nuevo...${RESET}"
-        echo "{\"owners\": [{\"id\": \"$user_id\", \"name\": \"$user_name\"}]}" > "$owners_file"
-        echo -e "${CYAN}✅ Se ha añadido a $user_name (ID: $user_id) como owner.${RESET}"
-    fi
-fi
-
 clear
 
 echo -e "${BLUE}"
@@ -121,4 +99,7 @@ echo -e "${RESET}"
 if [[ "$monitor" == "s" ]]; then
     echo -e "${CYAN}🚀 Iniciando el monitor de ALFA-TG...${RESET}"
     npm run server | tee logs/monitor.log
+else
+    echo -e "${CYAN}🚀 Iniciando ALFA-TG...${RESET}"
+    npm start
 fi
