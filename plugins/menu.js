@@ -111,6 +111,7 @@ let menuContent = `
 ┃ ➤ /menu2 (menu grupos)
 ┃ ➤ /menu3 (menu Dl)
 ┃ ➤ /menu18 (menu para adultos)
+┃ ➤ /menu4 (menu de buscadores)
 ┃ ➤ /menu8 (cómando avansados ptrodactyl panel)
 ┃ ➤ /menu11 (menu del owener)
 ╰━━━━━━━━━━━⊱`;
@@ -127,7 +128,6 @@ let menuContent = `
 ┃ ➤ /xnxxdl
 ┃ ➤ /pinterest
 ┃ ➤ /playaudio
-┃ ➤ /quemusica
 ╰━━━━━━━━━━━⊱`;
 await sendMenu(conn, menuContent);
 });
@@ -149,27 +149,27 @@ await sendMenu(conn, menuContent);
 bot.hears(getCommandRegex('menu1'), async (conn) => {
 let menuContent = `
 ╭━〔𝘾𝙊𝙈𝘼𝙉𝘿𝙊𝙎 𝙍𝙋𝙂〕━⊱
-┃ ➤ /minar (gana XP)  
-┃ ➤ /lb (ranking)  
-┃ ➤ /nivel (ver nivel)  
-┃ ➤ /reg (registrarse)  
-┃ ➤ /perfil (ver perfil)  
-┃ ➤ /myns (ver número de serie)  
-┃ ➤ /unreg (borrar cuenta)  
-┃ ➤ /cazar (gana oro o diamantes)  
-┃ ➤ /buy (compra diamantes)  
-┃ ➤ /buyall (compra máximo de diamantes)  
-┃ ➤ /rob (roba oro)  
-┃ ➤ /prest (presta diamantes)  
-┃ ➤ /si (acepta préstamo)  
-┃ ➤ /deudas (ver deudas)  
-┃ ➤ /pag (pagar deuda)  
-┃ ➤ /pvp (duelo 3 en raya)    
-┃ ➤ /rw (obtén personaje)  
-┃ ➤ /c (compra personaje)  
-┃ ➤ /mycharacters (ver personajes)  
-┃ ➤ /available (ver tienda)  
-┃ ➤ /explorar (busca recompensas)
+┃ ➤ /minar
+┃ ➤ /lb
+┃ ➤ /nivel
+┃ ➤ /reg  
+┃ ➤ /perfil  
+┃ ➤ /myns
+┃ ➤ /unreg
+┃ ➤ /cazar  
+┃ ➤ /buy 
+┃ ➤ /buyall
+┃ ➤ /prest
+┃ ➤ /rob 
+┃ ➤ /si 
+┃ ➤ /deudas
+┃ ➤ /pag
+┃ ➤ /pvp
+┃ ➤ /rw   
+┃ ➤ /c 
+┃ ➤ /mycharacters
+┃ ➤ /available
+┃ ➤ /explorar 
 ╰━━━━━━━━━━━⊱`;
 await sendMenu(conn, menuContent);
 });
