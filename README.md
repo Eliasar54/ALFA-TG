@@ -5,6 +5,9 @@
 
 
 > esta es una versión mejor de ALFA TG plugins
+
+# también se incluyo soporte para Sub-bots
+
 <p align="center">
 <a href="#"><img title="alfa" src="https://img.shields.io/badge/SI TE AGRADA EL REPOSITORIO APOYAME CON UNA 🌟 ¡GRACIAS! -red?colorA=%255ff0000&colorB=%23017e40&style=for-the-badge"></a> 
 </p>  
