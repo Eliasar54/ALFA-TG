@@ -49,27 +49,27 @@ fi
 echo -e "${CYAN}⏳ Preparando la instalación...${RESET}"
 
 if [[ -n "$PREFIX" ]]; then
-    pkg update -y > /dev/null 2>&1
-    pkg upgrade -y > /dev/null 2>&1
-    pkg install -y nodejs git npm > /dev/null 2>&1
+    pkg update -y
+    pkg upgrade -y
+    pkg install -y nodejs git npm
 else
     if [[ $EUID -ne 0 ]]; then
-        sudo apt update -y > /dev/null 2>&1
-        sudo apt upgrade -y > /dev/null 2>&1
-        sudo apt install -y nodejs git npm > /dev/null 2>&1
+        sudo apt update -y
+        sudo apt upgrade -y
+        sudo apt install -y nodejs git npm
     else
-        apt update -y > /dev/null 2>&1
-        apt upgrade -y > /dev/null 2>&1
-        apt install -y nodejs git npm > /dev/null 2>&1
+        apt update -y
+        apt upgrade -y
+        apt install -y nodejs git npm
     fi
 fi
 
 echo -e "${CYAN}📥 Clonando el repositorio de ALFA-TG...${RESET}"
-git clone https://github.com/Eliasar54/ALFA-TG > /dev/null 2>&1
+git clone https://github.com/Eliasar54/ALFA-TG 
 cd ALFA-TG
 
 echo -e "${CYAN}📦 Instalando dependencias necesarias...${RESET}"
-npm install --silent > /dev/null 2>&1
+npm install --silent
 
 clear
 
@@ -105,8 +105,8 @@ echo -e "${RESET}"
 
 if [[ "$monitor" == "s" ]]; then
     echo -e "${CYAN}🚀 Iniciando el monitor de ALFA-TG...${RESET}"
-    npm run server > /dev/null 2>&1
+    npm run server | tee logs/monitor.log
 else
     echo -e "${CYAN}🤖 Iniciando ALFA-TG...${RESET}"
-    npm start > /dev/null 2>&1
+    npm start | tee logs/bot.log
 fi
