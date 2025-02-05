@@ -50,43 +50,38 @@ echo -e "${CYAN}⏳ Preparando la instalación...${RESET}"
 
 if [[ -n "$PREFIX" ]]; then
     pkg update -y && pkg upgrade -y
-    pkg install -y nodejs git npm
+    pkg install -y nodejs git npm jq
 else
     if [[ $EUID -ne 0 ]]; then
         sudo apt update -y && sudo apt upgrade -y
-        sudo apt install -y nodejs git npm
+        sudo apt install -y nodejs git npm jq
     else
         apt update -y && apt upgrade -y
-        apt install -y nodejs git npm
+        apt install -y nodejs git npm jq
     fi
 fi
 
-echo -e "${CYAN}📥 Clonando el repositorio de ALFA-TG...${RESET}"
-
-if [[ -d "ALFA-TG" ]]; then
-    echo -e "${CYAN}⚠️ La carpeta ALFA-TG ya existe. Eliminándola...${RESET}"
-    rm -rf ALFA-TG
-fi
-
-git clone https://github.com/Eliasar54/ALFA-TG
-if [[ $? -ne 0 ]]; then
-    echo -e "${CYAN}❌ Error al clonar el repositorio. Verifica tu conexión a internet.${RESET}"
-    exit 1
+if [[ ! -d "ALFA-TG" ]]; then
+    git clone https://github.com/Eliasar54/ALFA-TG
+    if [[ $? -ne 0 ]]; then
+        echo -e "${CYAN}❌ Error al clonar el repositorio. Verifica tu conexión a internet.${RESET}"
+        exit 1
+    fi
 fi
 
 cd ALFA-TG || { echo -e "${CYAN}❌ No se pudo acceder a la carpeta ALFA-TG.${RESET}"; exit 1; }
 
-echo -e "${CYAN}📦 Instalando dependencias necesarias...${RESET}"
-
-if [[ ! -f "package.json" ]]; then
-    echo -e "${CYAN}❌ Error: No se encontró package.json. La clonación pudo haber fallado.${RESET}"
-    exit 1
-fi
-
-npm install --silent
-if [[ $? -ne 0 ]]; then
-    echo -e "${CYAN}❌ Error al instalar dependencias.${RESET}"
-    exit 1
+if [[ ! -d "node_modules" ]]; then
+    echo -e "${CYAN}📦 Instalando dependencias necesarias...${RESET}"
+    if [[ ! -f "package.json" ]]; then
+        echo -e "${CYAN}❌ Error: No se encontró package.json. La clonación pudo haber fallado.${RESET}"
+        exit 1
+    fi
+    npm install --silent
+    if [[ $? -ne 0 ]]; then
+        echo -e "${CYAN}❌ Error al instalar dependencias.${RESET}"
+        exit 1
+    fi
 fi
 
 mkdir -p logs
@@ -95,10 +90,12 @@ echo -e "${BLUE}⚙️ ¿Quieres añadirte como owner del bot? (s/n)${RESET}"
 read -p "👉 Elige: " add_owner
 
 if [[ "$add_owner" == "s" ]]; then
-    read -p "🆔 Ingresa tu ID de Telegram https://t.me/userinfobot para obtener tu id: " user_id
+    read -p "🆔 Ingresa tu ID de Telegram (https://t.me/userinfobot para obtener tu ID): " user_id
     read -p "👤 Ingresa tu nombre: " user_name
 
     owners_file="./config/owners.json"
+
+    mkdir -p "./config"
 
     if [[ -f "$owners_file" ]]; then
         temp_file=$(mktemp)
