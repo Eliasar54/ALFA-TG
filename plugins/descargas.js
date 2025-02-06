@@ -93,7 +93,45 @@ reply_to_message_id: conn.message.message_id
 });
 }
 };
+  
+bot.command('spotify', async (conn) => {
+let q = conn.message.text.split(' ').slice(1).join(' ');
+if (!q) return conn.reply('❌ Ingresa el nombre de la canción.', { reply_to_message_id: conn.message.message_id });
 
+try {
+let s = await axios.get(`https://api.vreden.web.id/api/spotifysearch?query=${encodeURIComponent(q)}`);
+if (!s.data.result || s.data.result.length === 0) return conn.reply('❌ No se encontraron resultados.', { reply_to_message_id: conn.message.message_id });
+
+let r = s.data.result[0];
+await conn.replyWithPhoto(r.coverArt, {
+caption: `🎵 *${r.title}*\n👨‍🎤 ${r.artist}\n💽 ${r.album}\n⏱ ${r.duration}\n📅 ${r.releaseDate}\n🔗 ${r.spotifyLink}\n_Descargando..._`,
+parse_mode: 'Markdown',
+reply_to_message_id: conn.message.message_id
+});
+
+let d = await axios.get(`https://api.vreden.web.id/api/spotify?url=${encodeURIComponent(r.spotifyLink)}`);
+if (!d.data.result || !d.data.result.music) return conn.reply('❌ No se pudo descargar.', { reply_to_message_id: conn.message.message_id });
+
+let p = path.resolve(__dirname, '../temp', `${Date.now()}.mp3`);
+let w = fs.createWriteStream(p);
+let res = await axios({ url: d.data.result.music, method: 'GET', responseType: 'stream' });
+res.data.pipe(w);
+
+w.on('finish', async () => {
+await conn.replyWithAudio({ source: p, filename: `${r.title}.mp3` });
+fs.unlinkSync(p);
+});
+
+w.on('error', (e) => {
+fs.unlinkSync(p);
+conn.reply(`⚠️ Error: ${e.message}`, { reply_to_message_id: conn.message.message_id });
+});
+
+} catch (e) {
+conn.reply(`⚠️ Error: ${e.message}`, { reply_to_message_id: conn.message.message_id });
+}
+});
+  
 bot.command('fb', handleFacebookDownload);
 bot.command('fasebok', handleFacebookDownload);
 
