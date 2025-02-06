@@ -48,8 +48,8 @@ return conn.replyWithMarkdown(`⛏️ *debes esperar ${cooldownremaining} segund
 const xpgained = Math.floor(Math.random() * 50) + 10;
 data.users[userId].xp += xpgained;
 if (checkLevelUp(data.users[userId])) {
-const { rangoActual, estiloactual } = obtenerRango(data.users[userId].level);
-conn.replyWithMarkdown(`🎉 *felicidades ${data.users[userId].name}, subiste al nivel ${data.users[userId].level}!*\n🌟 tu nuevo rango es: ${estiloactual} *${rangoActual}*`, {
+const { rangoActual, estiloActual } = obtenerRango(data.users[userId].level);
+conn.replyWithMarkdown(`🎉 *felicidades ${data.users[userId].name}, subiste al nivel ${data.users[userId].level}!*\n🌟 tu nuevo rango es: ${estiloActual} *${rangoActual}*`, {
 reply_to_message_id: conn.message.message_id
 });
 } else {
@@ -112,7 +112,7 @@ if (data.users[userId]) {
 return conn.reply(`❌ *ya estás registrado.*\ntu número de serie es: ${data.users[userId].sn}`, { reply_to_message_id: conn.message.message_id });
 }
 const sn = crypto.createHash('md5').update(userId.toString()).digest('hex').slice(0, 6);
-const { rangoActual, estiloactual } = obtenerRango(0);
+const { rangoActual, estiloActual } = obtenerRango(0);
 data.users[userId] = {
 name,
 age: parseInt(age, 10),
@@ -121,7 +121,7 @@ telegramid: userId,
 xp: 500,
 level: 0,
 rango: rangoActual,
-estilo: estiloactual,
+estilo: estiloActual,
 diamantes: 5,
 oro: 40,
 };
@@ -132,7 +132,7 @@ caption:
 `👤 *nombre:* ${name}\n` +
 `🎂 *edad:* ${age}\n` +
 `🔢 *número de serie:* ${sn}\n` +
-`🏅 *rango inicial:* ${estiloactual} *${rangoActual}*\n` +
+`🏅 *rango inicial:* ${estiloActual} *${rangoActual}*\n` +
 `💎 *diamantes iniciales:* 5\n` +
 `💰 *oro inicial:* 40\n` +
 `⚔️ *xp inicial:* 500`,
@@ -816,8 +816,8 @@ data.users[userId][finding.type] = (data.users[userId][finding.type] || 0) + fin
 
 let response = `🗺️ mientras explorabas, ${finding.message} ${finding.amount} ${finding.type}.`;
 if (finding.type === 'xp' && checkLevelUp(data.users[userId])) {
-const { rangoActual, estiloactual } = obtenerRango(data.users[userId].level);
-response += ` 🎉 *felicidades ${data.users[userId].name}, subiste al nivel ${data.users[userId].level}!*\n🌟 tu nuevo rango es: ${estiloactual} *${rangoActual}*`;
+const { rangoActual, estiloActual } = obtenerRango(data.users[userId].level);
+response += ` 🎉 *felicidades ${data.users[userId].name}, subiste al nivel ${data.users[userId].level}!*\n🌟 tu nuevo rango es: ${estiloActual} *${rangoActual}*`;
 }
 
 addcooldown('explorar', userId, cooldowntime);
