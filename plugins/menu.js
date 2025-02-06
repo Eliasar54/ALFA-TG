@@ -128,6 +128,7 @@ let menuContent = `
 ┃ ➤ /xnxxdl
 ┃ ➤ /pinterest
 ┃ ➤ /playaudio
+┃ ➤ /spotify
 ╰━━━━━━━━━━━⊱`;
 await sendMenu(conn, menuContent);
 });
