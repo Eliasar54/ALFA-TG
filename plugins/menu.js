@@ -31,7 +31,7 @@ console.error(chalk.red("Error al guardar la configuración: "), error);
 }
 };
 
-const getBio = async (conn, bot) => {
+const getBio = async (conn) => {
 try {
 const cpuSpeed = (await si.cpu()).speed + " GHz";
 const memory = await si.mem();
@@ -55,8 +55,6 @@ greeting = `Buenas tardes 🌇: ${conn.from.username ? `@${conn.from.username}` 
 } else {
 greeting = `Buenas noches 🌙: ${conn.from.username ? `@${conn.from.username}` : conn.from.first_name}`;
 }
-const botInfo = await bot.telegram.getMe();
-const botUsername = botInfo.username;
 const owner = "@EliasarYT";
 const botType = global.isSubBot ? "ѕυв-вфт 💫" : "вфт фғιcιal 👾";
 return `
@@ -71,7 +69,6 @@ return `
 ┃ ➤ Uptime: ${uptime}  
 ┃ ➤ ${greeting}  
 ┃ ➤ Owner: (${owner})  
-┃ ➤ pregúntame algo ejemplo @${botUsername} cuanto es 2+1
 ┃ 「sσρσrτє」
 ┃ ➤ /report (reporta un error)
 ┃ ➤ /tutorialserbot (tutorial de como ser un sub bot)
@@ -86,7 +83,7 @@ return "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo m�
 
 const sendMenu = async (conn, menuContent) => {
 try {
-const bio = await getBio(conn, bot);
+const bio = await getBio(conn);
 let menu = `${bio}\n${menuContent}\nᵉˢᶜʳᶤᵇᵉ ᵉˡ ᶜᵒᵐᵃᶰᵈᵒ ᵈᵉˡ ᵐᵉᶰᵘ ᵐᵃᶰᵘᵃˡᵐᵉᶰᵗᵉ`;
 
 await conn.replyWithPhoto({ source: global.img }, {
@@ -117,7 +114,7 @@ let menuContent = `
 ┃ ➤ /menu8 (cómando avansados ptrodactyl panel)
 ┃ ➤ /menu11 (menu del owener)
 ╰━━━━━━━━━━━⊱`;
-await sendMenu(conn, menuContent, bot);
+await sendMenu(conn, menuContent);
 });
 
 bot.hears(getCommandRegex('menu3'), async (conn) => {
@@ -132,7 +129,7 @@ let menuContent = `
 ┃ ➤ /playaudio
 ┃ ➤ /spotify
 ╰━━━━━━━━━━━⊱`;
-await sendMenu(conn, menuContent, bot);
+await sendMenu(conn, menuContent);
 });
 
 bot.hears(getCommandRegex('menu2'), async (conn) => {
@@ -146,7 +143,7 @@ let menuContent = `
 ┃ ➤ /modocaliente 
 ┃ ➤ /admins
 ╰━━━━━━━━━━━⊱`;
-await sendMenu(conn, menuContent, bot);
+await sendMenu(conn, menuContent);
 });
 
 bot.hears(getCommandRegex('menu1'), async (conn) => {
@@ -174,7 +171,7 @@ let menuContent = `
 ┃ ➤ /available
 ┃ ➤ /explorar 
 ╰━━━━━━━━━━━⊱`;
-await sendMenu(conn, menuContent, bot);
+await sendMenu(conn, menuContent);
 });
 
 bot.hears(getCommandRegex('menu2'), async (conn) => {
@@ -184,7 +181,7 @@ let menuContent = `
 ┃ ➤ /ia
 ┃ ➤ /bing
 ╰━━━━━━━━━━━⊱`;
-await sendMenu(conn, menuContent, bot);
+await sendMenu(conn, menuContent);
 });
 
 bot.hears(getCommandRegex('menu18'), async (conn) => {
@@ -195,7 +192,7 @@ let menuContent = `
 ┃ ➤ /packgirl
 ┃ ➤ /pack
 ╰━━━━━━━━━━━⊱`;
-await sendMenu(conn, menuContent, bot);
+await sendMenu(conn, menuContent);
 });
 
 bot.hears(getCommandRegex('menu8'), async (conn) => {
@@ -205,7 +202,7 @@ let menuContent = `
 ┃ ➤ /users 
 ┃ ➤ /backup
 ╰━━━━━━━━━━━⊱`;
-await sendMenu(conn, menuContent, bot);
+await sendMenu(conn, menuContent);
 });
 
 const setTimezone = (conn) => {
