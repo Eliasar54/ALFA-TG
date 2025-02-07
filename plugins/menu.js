@@ -55,7 +55,8 @@ greeting = `Buenas tardes 🌇: ${conn.from.username ? `@${conn.from.username}` 
 } else {
 greeting = `Buenas noches 🌙: ${conn.from.username ? `@${conn.from.username}` : conn.from.first_name}`;
 }
-
+const botInfo = await bot.telegram.getMe();
+const botUsername = botInfo.username;
 const owner = "@EliasarYT";
 const botType = global.isSubBot ? "ѕυв-вфт 💫" : "вфт фғιcιal 👾";
 return `
@@ -70,6 +71,7 @@ return `
 ┃ ➤ Uptime: ${uptime}  
 ┃ ➤ ${greeting}  
 ┃ ➤ Owner: (${owner})  
+┃ ➤ pregúntame algo ejemplo @${botUsername} cuanto es 2+1
 ┃ 「sσρσrτє」
 ┃ ➤ /report (reporta un error)
 ┃ ➤ /tutorialserbot (tutorial de como ser un sub bot)
