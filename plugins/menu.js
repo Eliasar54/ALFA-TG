@@ -31,7 +31,7 @@ console.error(chalk.red("Error al guardar la configuración: "), error);
 }
 };
 
-const getBio = async (conn) => {
+const getBio = async (conn, bot) => {
 try {
 const cpuSpeed = (await si.cpu()).speed + " GHz";
 const memory = await si.mem();
@@ -86,7 +86,7 @@ return "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo m�
 
 const sendMenu = async (conn, menuContent) => {
 try {
-const bio = await getBio(conn);
+const bio = await getBio(conn, bot);
 let menu = `${bio}\n${menuContent}\nᵉˢᶜʳᶤᵇᵉ ᵉˡ ᶜᵒᵐᵃᶰᵈᵒ ᵈᵉˡ ᵐᵉᶰᵘ ᵐᵃᶰᵘᵃˡᵐᵉᶰᵗᵉ`;
 
 await conn.replyWithPhoto({ source: global.img }, {
@@ -117,7 +117,7 @@ let menuContent = `
 ┃ ➤ /menu8 (cómando avansados ptrodactyl panel)
 ┃ ➤ /menu11 (menu del owener)
 ╰━━━━━━━━━━━⊱`;
-await sendMenu(conn, menuContent);
+await sendMenu(conn, menuContent, bot);
 });
 
 bot.hears(getCommandRegex('menu3'), async (conn) => {
@@ -132,7 +132,7 @@ let menuContent = `
 ┃ ➤ /playaudio
 ┃ ➤ /spotify
 ╰━━━━━━━━━━━⊱`;
-await sendMenu(conn, menuContent);
+await sendMenu(conn, menuContent, bot);
 });
 
 bot.hears(getCommandRegex('menu2'), async (conn) => {
@@ -146,7 +146,7 @@ let menuContent = `
 ┃ ➤ /modocaliente 
 ┃ ➤ /admins
 ╰━━━━━━━━━━━⊱`;
-await sendMenu(conn, menuContent);
+await sendMenu(conn, menuContent, bot);
 });
 
 bot.hears(getCommandRegex('menu1'), async (conn) => {
@@ -174,7 +174,7 @@ let menuContent = `
 ┃ ➤ /available
 ┃ ➤ /explorar 
 ╰━━━━━━━━━━━⊱`;
-await sendMenu(conn, menuContent);
+await sendMenu(conn, menuContent, bot);
 });
 
 bot.hears(getCommandRegex('menu2'), async (conn) => {
@@ -184,7 +184,7 @@ let menuContent = `
 ┃ ➤ /ia
 ┃ ➤ /bing
 ╰━━━━━━━━━━━⊱`;
-await sendMenu(conn, menuContent);
+await sendMenu(conn, menuContent, bot);
 });
 
 bot.hears(getCommandRegex('menu18'), async (conn) => {
@@ -195,7 +195,7 @@ let menuContent = `
 ┃ ➤ /packgirl
 ┃ ➤ /pack
 ╰━━━━━━━━━━━⊱`;
-await sendMenu(conn, menuContent);
+await sendMenu(conn, menuContent, bot);
 });
 
 bot.hears(getCommandRegex('menu8'), async (conn) => {
@@ -205,7 +205,7 @@ let menuContent = `
 ┃ ➤ /users 
 ┃ ➤ /backup
 ╰━━━━━━━━━━━⊱`;
-await sendMenu(conn, menuContent);
+await sendMenu(conn, menuContent, bot);
 });
 
 const setTimezone = (conn) => {
