@@ -53,3 +53,30 @@ bash <(curl -sL https://raw.githubusercontent.com/Eliasar54/ALFA-TG/refs/heads/m
 # ᴄᴏᴍᴀɴᴅᴏs ʏ ғᴜɴᴄɪᴏɴᴇs
 
 <h1>Mas destacados</h1>
+
+```command
+/menu
+```
+> MUESTRA TODOS LOS MEUS DISPONIBLES (ALGUNOS MENUS NO AN SIDO AGREGANDOS)
+
+```command
+/play
+```
+> descarga videos de Youtube fácilmente
+
+```command
+/antilink on/off
+```
+> enciende o apaga el antilink
+
+```command
+/welcome on/off
+```
+> enciende o apaga el welcome
+
+## PREFIX 
+
+<h1>el bot es compatible von con y sin prefix (sin prefix para el owener)</h1>
+<h1>el menu puedes usar cualquier prefijo pero no quiere decir que todos los comandos sean asi</h1>
+
+> ©2024 by EliasarYT 
