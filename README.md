@@ -57,7 +57,7 @@ bash <(curl -sL https://raw.githubusercontent.com/Eliasar54/ALFA-TG/refs/heads/m
 ```command
 /menu
 ```
-> MUESTRA TODOS LOS MEUS DISPONIBLES (ALGUNOS MENUS NO AN SIDO AGREGANDOS)
+> MUESTRA TODOS LOS MENUS DISPONIBLES (ALGUNOS MENUS NO AN SIDO AGREGANDOS)
 
 ```command
 /play
