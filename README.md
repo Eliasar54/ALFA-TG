@@ -28,6 +28,12 @@
 bash <(curl -sL https://raw.githubusercontent.com/Eliasar54/ALFA-TG/refs/heads/main/install.sh)
 ```
 
+<p align="center">
+  <strong>⚠️ Advertencia: Este proyecto está en reconstrucción.</strong><br>
+  Algunas funcionalidades y comanfos pueden dar error.
+</p>
+
+> HOST RECOMENDADO
 ### ☁️ SKY ULTRA PLUS 
 [![YouTube](https://img.shields.io/badge/SkyUltraPlus-Host-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/fZbcCLpSH6Y?si=1sDen7Bzmb7jVpAI)
 
