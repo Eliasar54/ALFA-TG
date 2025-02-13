@@ -611,43 +611,49 @@ await conn.telegram.editMessageText(conn.chat.id, mensaje.message_id, null, anim
 bot.command('rw', async (conn) => {  
 try {  
 const charPath = path.join(__dirname, '../config/character.json');  
-if (!fs.existsSync(charPath)) fs.writeFileSync(charPath, JSON.stringify({ characters: [] }, null, 2));  
+if (!fs.existsSync(charPath)) {  
+fs.writeFileSync(charPath, JSON.stringify({ characters: [] }, null, 2));  
+}  
+
 const charData = JSON.parse(fs.readFileSync(charPath));  
+if (!charData.characters || !Array.isArray(charData.characters)) {  
+charData.characters = [];  
+}  
 
 let character;  
 let attempts = 0;  
 do {  
-if (attempts++ >= 10) return conn.reply('❌ No se encontró un personaje disponible.', { reply_to_message_id: conn.message.message_id });  
+if (attempts++ >= 10) return conn.reply(' No se encontró un personaje disponible 😖.', { reply_to_message_id: conn.message.message_id });  
 const res = await axios.get('https://eliasar-yt-api.vercel.app/api/rw');  
 character = res.data.character;  
 } while (charData.characters.some(c => c.name === character.name));  
 
-const predefinedPrices = [9, 16, 14, 15, 23, 19, 6, 8, 12, 18, 20, 22, 25, 7, 10, 11, 13, 17, 21, 24];
-const closestPrice = predefinedPrices[Math.floor(Math.random() * predefinedPrices.length)];
+const predefinedPrices = [9, 16, 14, 15, 23, 19, 6, 8, 12, 18, 20, 22, 25, 7, 10, 11, 13, 17, 21, 24];  
+const closestPrice = predefinedPrices[Math.floor(Math.random() * predefinedPrices.length)];  
 
 character.value = closestPrice;  
 
-const id = crypto.createHash('md5').update(conn.from.id.toString() + Date.now().toString()).digest('hex').slice(0, 3);
+const id = crypto.createHash('md5').update(conn.from.id.toString() + Date.now().toString()).digest('hex').slice(0, 3);  
 
-charData.characters.push({ 
-id: id, 
-name: character.name, 
-price: character.value, 
-status: 'available' 
-});
+charData.characters.push({  
+id: id,  
+name: character.name,  
+price: character.value,  
+status: 'available'  
+});  
 
-fs.writeFileSync(charPath, JSON.stringify(charData, null, 2));
+fs.writeFileSync(charPath, JSON.stringify(charData, null, 2));  
 
 const msg = await conn.replyWithPhoto(character.url, {  
-caption: `
-🔹 *${character.name}*
-💎 *${character.value} diamantes*
-Responde con /c ${id}
-para adquirirlo.
+caption: `  
+🔹 *${character.name}*  
+💎 *${character.value} diamantes*  
+Responde con /c ${id}  
+para adquirirlo.  
 mira mas personajes con /available`,  
 parse_mode: 'markdown',  
 reply_to_message_id: conn.message.message_id  
-});
+});  
 
 } catch (e) {  
 console.error('Error en rw:', e);  
